@@ -1,0 +1,6 @@
+task_id,seq_idx,type,cycles,address,rw
+1,0,compute,10,,
+2,0,mem,0,0x80000000,R
+2,1,compute,20,,
+3,0,compute,15,,
+4,0,mem,0,0x80001000,W

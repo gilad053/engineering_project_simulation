@@ -1,0 +1,34 @@
+{
+  "cores": 2,
+  "memory_banks": 2,
+  "chiplets": 1,
+  "scheduling_policy": "fifo",
+  "cache": {
+    "enabled": false,
+    "size_bytes": 0,
+    "hit_latency_cycles": 0,
+    "port_limit": 1
+  },
+  "dtcm": {
+    "enabled": false,
+    "base_address": "0x00000000",
+    "size_bytes": 0,
+    "latency_cycles": 0
+  },
+  "memory_banks": {
+    "count": 2,
+    "service_latency_cycles": 10,
+    "bank_index_function": "addr_mod_n",
+    "conflict_policy": "serialize",
+    "port_limit": 1
+  },
+  "interconnect": {
+    "topology": "bus",
+    "base_latency_cycles": 5,
+    "link_width_bytes_per_cycle": 8
+  },
+  "chiplet": {
+    "remote_penalty_cycles": 0
+  },
+  "frequency_ghz": 1.0
+}

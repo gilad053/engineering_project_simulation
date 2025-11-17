@@ -1,0 +1,12 @@
+{
+        "cores": 16,
+        "enabled": true,
+        "frequency": 2.5,
+        "name": "Test Config",
+        "address": "0x80000000",
+        "cache": {
+            "size": 32768,
+            "enabled": false
+        },
+        "banks": [1, 2, 4, 8]
+    }

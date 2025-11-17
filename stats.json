@@ -1,0 +1,25 @@
+{
+  "makespan_cycles": 38,
+  "makespan_seconds": 1.900000000e-08,
+  "core_utilization": [0.0000, 0.0000, 0.0000, 0.0000],
+  "core_busy_cycles": [0, 0, 0, 0],
+  "avg_core_utilization": 0.0000,
+  "total_tasks_completed": 10,
+  "avg_task_latency_cycles": 13.00,
+  "avg_task_wait_cycles": 0.00,
+  "memory_accesses": {
+    "dtcm_hits": 0,
+    "cache_hits": 0,
+    "cache_misses": 0,
+    "main_memory_accesses": 0
+  },
+  "interconnect_busy_cycles": 0,
+  "interconnect_utilization": 0.0000,
+  "conflicts": {
+    "bank_conflicts": 0,
+    "cache_port_conflicts": 0,
+    "bank_port_conflicts": 0,
+    "intra_chiplet_conflicts": 0,
+    "inter_chiplet_conflicts": 0
+  }
+}

@@ -1,0 +1,128 @@
+{
+  // ============================================================================
+  // Many-Core Simulator Configuration File
+  // ============================================================================
+  // This file configures all runtime parameters for the discrete-event
+  // many-core processor simulator. Adjust these values to model different
+  // architectural configurations.
+  
+  // ----------------------------------------------------------------------------
+  // Core Configuration
+  // ----------------------------------------------------------------------------
+  // Number of processing cores in the system
+  "cores": 16,
+  
+  // ----------------------------------------------------------------------------
+  // Chiplet Configuration
+  // ----------------------------------------------------------------------------
+  // Number of chiplets (physical groupings of cores and memory banks)
+  // Cores and banks are distributed evenly across chiplets
+  "chiplets": 2,
+  
+  // ----------------------------------------------------------------------------
+  // Scheduling Policy
+  // ----------------------------------------------------------------------------
+  // Task scheduling policy for dispatching ready tasks to idle cores
+  // Options:
+  //   "fifo"              - First-In-First-Out (dispatch in ready order)
+  //   "round_robin"       - Cycle through cores evenly
+  //   "shortest_ops_first" - Prioritize tasks with fewer remaining operations
+  "scheduling_policy": "fifo",
+  
+  // ----------------------------------------------------------------------------
+  // Cache Configuration
+  // ----------------------------------------------------------------------------
+  "cache": {
+    // Enable or disable cache modeling
+    "enabled": true,
+    
+    // Cache size in bytes (used for simple set-based hit/miss modeling)
+    "size_bytes": 32768,
+    
+    // Cache hit latency in cycles
+    "hit_latency_cycles": 2,
+    
+    // Maximum number of concurrent cache accesses (port limit)
+    // Set to 0 for unlimited ports
+    "port_limit": 4
+  },
+  
+  // ----------------------------------------------------------------------------
+  // DTCM (Data Tightly-Coupled Memory) Configuration
+  // ----------------------------------------------------------------------------
+  "dtcm": {
+    // Enable or disable DTCM (private low-latency memory per core)
+    "enabled": true,
+    
+    // Base address for DTCM range (hex string)
+    // Each core has a private DTCM at this base + (coreId * size)
+    "base_address": "0x80000000",
+    
+    // Size of DTCM per core in bytes
+    "size_bytes": 16384,
+    
+    // DTCM access latency in cycles
+    "latency_cycles": 1
+  },
+  
+  // ----------------------------------------------------------------------------
+  // Memory Bank Configuration
+  // ----------------------------------------------------------------------------
+  "memory_banks": {
+    // Number of memory banks in the system
+    "count": 8,
+    
+    // Service latency per bank access in cycles
+    "service_latency_cycles": 50,
+    
+    // Bank index function for mapping addresses to banks
+    // Options:
+    //   "addr_mod_n" - (address / 64) % numBanks
+    //   "xor_fold"   - (address ^ (address >> 16)) % numBanks
+    "bank_index_function": "addr_mod_n",
+    
+    // Bank conflict policy when multiple requests target the same bank
+    // Options:
+    //   "serialize"    - Queue requests, service one at a time
+    //   "queue"        - Queue with parallel service up to port_limit
+    //   "extra_delay"  - Add fixed penalty cycles for conflicts
+    "conflict_policy": "queue",
+    
+    // Maximum number of concurrent accesses per bank
+    // Set to 0 for unlimited ports
+    "port_limit": 2
+  },
+  
+  // ----------------------------------------------------------------------------
+  // Interconnect Configuration
+  // ----------------------------------------------------------------------------
+  "interconnect": {
+    // Interconnect topology
+    // Options:
+    //   "bus"  - Shared bus topology
+    //   "mesh" - 2D mesh topology
+    "topology": "bus",
+    
+    // Base interconnect latency in cycles (minimum transfer time)
+    "base_latency_cycles": 10,
+    
+    // Link bandwidth in bytes per cycle
+    // Used to calculate serialization delay: (data_size / link_width)
+    "link_width_bytes_per_cycle": 8
+  },
+  
+  // ----------------------------------------------------------------------------
+  // Chiplet Communication
+  // ----------------------------------------------------------------------------
+  "chiplet": {
+    // Additional latency penalty for inter-chiplet memory accesses in cycles
+    // Added when a core accesses a memory bank on a different chiplet
+    "remote_penalty_cycles": 20
+  },
+  
+  // ----------------------------------------------------------------------------
+  // Clock Frequency
+  // ----------------------------------------------------------------------------
+  // System clock frequency in GHz (used for cycle-to-time conversion)
+  "frequency_ghz": 2.0
+}
